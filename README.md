@@ -16,6 +16,7 @@
 8. How to embed images and figures
 9. Recommended plugins and how to install them
 10. Daily workflow suggestion
+11. Bibliography management — importing from Zotero
 
 ---
 
