@@ -345,8 +345,8 @@ The script `zotero_to_obsidian.py` is included in the vault root.
 # Navigate to your vault folder
 cd /path/to/your/vault
 
-# Run the script
-python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/
+# Run the script with test bibliography
+python3 zotero_to_obsidian.py ./Bibliography/test_library.bib ./Bibliography/
 ```
 
 Replace `/path/to/your/vault` with the actual path to your vault, and `~/Documents/my_library.bib` with the path to your exported `.bib` file.
