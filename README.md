@@ -424,4 +424,4 @@ Clicking that link in Obsidian will open the PDF in your default PDF viewer.
 
 
 
-*Last updated: May 2026*
+*Last updated: July 2026*
