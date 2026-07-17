@@ -1,5 +1,7 @@
 # Lab Vault — Complete Guide for Beginners
 
+<p align="center"><img src="./_Attachments/README-visgraph.png" alt="Bibliography graph view example" width="760"></p><p align="center"><em>Bibliography graph view example</em</p>
+
 > This guide assumes you have never used Obsidian or Markdown before. Read it once at the start and keep it as a reference.
 
 ---
@@ -279,8 +281,6 @@ This is a suggestion — adapt it to what works for you.
 ---
 
 ## 11. Bibliography management — importing from Zotero
-
-<p align="center"><img src="./_Attachments/README-visgraph.png" alt="Bibliography graph view example" width="760"></p><p align="center"><em>Bibliography graph view example</em</p>
 
 ### Overview
 
