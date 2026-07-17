@@ -349,7 +349,7 @@ The script `zotero_to_obsidian.py` is in the vault root. Open a terminal, naviga
 
 ---
 
-#### Option A — Notes only (no PDF download)
+#### Option A — Notes only (PDF exported via Zotero and saved in ./Bibliography/PDFs)
 
 ```bash
 python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/
