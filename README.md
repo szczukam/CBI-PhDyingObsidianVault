@@ -280,6 +280,8 @@ This is a suggestion — adapt it to what works for you.
 
 ## 11. Bibliography management — importing from Zotero
 
+<p align="center"><img src="./_Attachments/README-visgraph.png" alt="Bibliography graph view example" width="760"></p><p align="center"><em>Bibliography graph view example</em</p>
+
 ### Overview
 
 The `Bibliography/` folder stores one Markdown note per paper, generated automatically from your Zotero library. Each note contains all metadata (authors, year, journal, DOI, keywords as Obsidian `[[links]]`) plus empty sections for your own reading notes.
