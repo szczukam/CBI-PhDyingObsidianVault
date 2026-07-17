@@ -18,7 +18,6 @@
 10. Daily workflow suggestion
 11. Bibliography management — importing from Zotero
 
-
 ---
 
 ## 1. What is Obsidian?
@@ -467,3 +466,4 @@ From any note in the vault, you can link to a paper:
 ```
 
 In your **Project** note, add a **Key papers** section and list the most relevant ones. Over time, Obsidian's graph view will show you which papers connect to which experiments, protocols, and projects.
+*Last updated: July 2026*
