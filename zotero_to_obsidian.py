@@ -393,9 +393,9 @@ def entry_to_markdown(entry, kw_links, pdf_filename=None):
     L.append(f"**Project:** [[Projects/]]")
     L.append("")
 
-    if kw_links:
+    """if kw_links:
         L.append("**Keywords:** " + " · ".join(kw_links))
-        L.append("")
+        L.append("")"""
 
     L += ["---", "",
           "## In one sentence", "", "> ", ""]
