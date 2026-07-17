@@ -16,6 +16,8 @@
 8. How to embed images and figures
 9. Recommended plugins and how to install them
 10. Daily workflow suggestion
+11. Bibliography management — importing from Zotero
+
 
 ---
 
@@ -281,14 +283,15 @@ This is a suggestion — adapt it to what works for you.
 
 ### Overview
 
-The `Bibliography/` folder stores one Markdown note per paper, generated automatically from your Zotero library. Each note contains all metadata (authors, year, journal, DOI, keywords as Obsidian links) plus sections for your own reading notes.
+The `Bibliography/` folder stores one Markdown note per paper, generated automatically from your Zotero library. Each note contains all metadata (authors, year, journal, DOI, keywords as Obsidian `[[links]]`) plus empty sections for your own reading notes.
+
+The script can also **download the PDF** for each paper and store it in `Bibliography/PDFs/`, then create a clickable link inside the note.
 
 ```
 Bibliography/
-├── Forsythe 1996 — HIF-1α essential for VEGF.md     ← one note per paper
+├── Forsythe 1996 — HIF-1α essential for VEGF.md
 ├── Semenza 2001 — HIF-1 and human disease.md
-├── Kaelin 2008 — Oxygen sensing by metazoans.md
-└── PDFs/                                             ← store PDF files here (optional)
+└── PDFs/
     ├── Forsythe1996.pdf
     └── Semenza2001.pdf
 ```
@@ -308,119 +311,159 @@ Better BibTeX is a free Zotero plugin that exports your library as a clean `.bib
 
 ### Step 2 — Export your Zotero library as BibTeX
 
-1. In Zotero, select the collection you want to export (or your whole library).
+1. In Zotero, select the collection you want (or your whole library).
 2. Right-click → **Export Collection…**
 3. Format: **Better BibTeX**
-4. Check **"Keep updated"** if you want the file to auto-refresh when you add new papers.
-5. Save the file somewhere easy to find, e.g. `~/Documents/my_library.bib`
+4. ✅ Check **"Keep updated"** — the file will refresh automatically when you add papers.
+5. Save it somewhere easy to find, e.g. `~/Documents/my_library.bib`
 
-> **Tip:** Export one `.bib` file per Zotero collection if your projects are very different. You can run the import script once per file, always pointing to the same `Bibliography/` folder.
+> **Tip:** make sure your Zotero entries have **keywords** filled in — these become `[[links]]` in Obsidian and build your knowledge graph automatically.
 
 ---
 
-### Step 3 — Make sure Python is installed
+### Step 3 — Check that Python is installed
 
-The import script requires Python 3.8 or newer. No extra libraries needed.
-
-**Check if Python is installed — open a terminal and type:**
+Open a terminal and type:
 
 ```bash
 python3 --version
 ```
 
-If you see something like `Python 3.11.2` you are good. If not:
-- **Mac:** install from https://www.python.org/downloads/ or via Homebrew (`brew install python3`)
-- **Windows:** install from https://www.python.org/downloads/ — tick "Add Python to PATH" during install
+You should see something like `Python 3.11.2`. If not:
+- **Mac:** `brew install python3` or download from https://www.python.org
+- **Windows:** download from https://www.python.org — tick **"Add Python to PATH"** during install
 - **Linux:** `sudo apt install python3`
 
----
-
-### Step 4 — Run the import script
-
-The script `zotero_to_obsidian.py` is included in the vault root.
-
-**Open a terminal** (on Mac: Terminal app; on Windows: PowerShell or Command Prompt):
-
-```bash
-# Navigate to your vault folder
-cd /path/to/your/vault
-
-# Run the script with test bibliography
-python3 zotero_to_obsidian.py ./Bibliography/test_library.bib ./Bibliography/
-```
-
-Replace `/path/to/your/vault` with the actual path to your vault, and `~/Documents/my_library.bib` with the path to your exported `.bib` file.
-
-**Example output:**
-
-```
-📖  Reading my_library.bib …
-    Found 87 entries.
-
-  ✅  Created: Forsythe 1996 — Activation of vascular endothelial…
-  ✅  Created: Semenza 2001 — HIF-1, O2, and the 3 PHDs…
-  ✅  Created: Kaelin 2008 — Oxygen sensing by metazoans…
-  ...
-🎉  Done — 87 created, 0 skipped, 0 errors.
-```
-
-Each paper becomes one Markdown note in `Bibliography/`, named **Lastname YEAR — Short title**.
+No external libraries are needed — the script uses only Python's built-in modules.
 
 ---
 
-### Step 5 — What the generated notes look like
+### Step 4 — Run the script
 
-Each note is created with:
+The script `zotero_to_obsidian.py` is in the vault root. Open a terminal, navigate to the vault folder, and run one of the following commands depending on what you want.
 
-- **YAML front matter** with title, authors, year, journal, DOI
-- **Keywords from Zotero converted to Obsidian `[[links]]`** — so `HIF-1α, hypoxia` becomes `[[HIF-1α]] · [[hypoxia]]`, creating graph connections automatically
-- **A link to the PDF** if you stored a filename in Zotero
-- **Empty sections** for you to fill in: "In one sentence", "Key findings", "Methods", "Relevance to my work", "Critical reading"
-
-> You do not need to fill in every section. Even just "In one sentence" and "Relevance to my work" is enough to make the notes useful.
+**Open a terminal in the vault folder:**
+- Mac/Linux: `cd /path/to/your/vault`
+- Windows: open PowerShell, then `cd C:\path\to\your\vault`
 
 ---
 
-### Keeping your bibliography up to date
-
-When you add new papers to Zotero:
-
-1. Zotero will auto-update the `.bib` file if you checked "Keep updated" in Step 2.
-2. Re-run the script — existing notes are **skipped by default**, so your reading notes are safe.
+#### Option A — Notes only (no PDF download)
 
 ```bash
 python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/
-# Only new papers will be created. Existing notes are untouched.
 ```
 
-If you want to **force-update** a note (warning: overwrites your reading notes):
+Creates one Markdown note per paper. No PDFs downloaded.
+
+---
+
+#### Option B — Notes + open-access PDFs (legal, via Unpaywall)
+
+Unpaywall finds freely and legally available PDFs (preprints, PubMed Central, institutional repositories). Coverage is roughly 50% of recent papers.
 
 ```bash
+python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/ \
+    --pdf unpaywall --email you@institution.edu
+```
+
+Your email is sent to the Unpaywall API as identification (it is a public, free API — your email is not sold or spammed).
+
+---
+
+#### Option C — Notes + PDFs via Sci-Hub
+
+Sci-Hub provides access to virtually any paper. Access may be restricted depending on your country or institution network.
+
+```bash
+python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/ --pdf scihub
+```
+
+> ⚠️ The legal status of Sci-Hub varies by country. Using it is your own responsibility.
+
+---
+
+#### Option D — Try Unpaywall first, fall back to Sci-Hub
+
+```bash
+python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/ \
+    --pdf both --email you@institution.edu
+```
+
+This is the most effective option: gets as many PDFs as possible, legally where available.
+
+---
+
+#### Other useful options
+
+```bash
+# Skip note creation — only download missing PDFs for existing notes
+python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/ \
+    --pdf scihub --pdfs-only
+
+# Slow down requests if a server is rate-limiting you (default is 2 seconds between requests)
+python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/ \
+    --pdf scihub --delay 5
+
+# Overwrite existing notes (warning: your reading notes will be erased)
 python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/ --overwrite
 ```
 
 ---
 
-### Linking papers to your experiments and projects
+### What the output looks like
 
-Once a note exists, you can link to it from anywhere in the vault:
+Example terminal output:
 
-- In an **Experiment note**: `Related paper: [[Bibliography/Forsythe 1996 — HIF-1α essential for VEGF]]`
-- In a **Protocol note**: `Based on: [[Bibliography/Kaelin 2008 — Oxygen sensing by metazoans]]`
-- In a **Project note**, add a **Key papers** section and list the most relevant ones
+```
+📖  Reading my_library.bib …
+    Found 87 entries.
 
-This means you can always trace: *which paper justified this experiment?* or *which experiments tested what this paper claimed?*
+📥  PDF source: Unpaywall → Sci-Hub
+
+  🔍  [Forsythe1996] Trying Unpaywall … not available
+  🔍  [Forsythe1996] Trying Sci-Hub … found ✓
+  ⬇️   [Forsythe1996] Downloading PDF … ✅  Forsythe1996.pdf (1823 KB)
+  ✅  [Forsythe1996] Forsythe 1996 — Activation of vascular endothelial…
+
+  🔍  [Semenza2001] Trying Unpaywall … found ✓
+  ⬇️   [Semenza2001] Downloading PDF … ✅  Semenza2001.pdf (312 KB)
+  ✅  [Semenza2001] Semenza 2001 — HIF-1, O2, and the 3 PHDs…
+  ...
+
+───────────────────────────────────────────────────────
+  Notes  : 87 created, 0 skipped, 0 errors
+  PDFs   : 71 downloaded, 0 already existed, 16 not found
+───────────────────────────────────────────────────────
+```
+
+Each generated note includes:
+- Full metadata as YAML properties
+- Keywords from Zotero converted to `[[links]]` — these appear in the Obsidian graph
+- A clickable DOI link
+- A direct link to the PDF: `[[Bibliography/PDFs/Forsythe1996.pdf]]`
+- Empty sections for your own notes: "In one sentence", "Key findings", "Relevance to my work", etc.
 
 ---
 
-### Storing PDFs (optional)
+### Keeping your bibliography up to date
 
-You can store the actual PDF files in `Bibliography/PDFs/`. If you added the filename in Zotero's `file` field, the generated note will include a direct link: `[[Bibliography/PDFs/Forsythe1996.pdf]]`.
+When you add new papers to Zotero, the `.bib` file updates automatically (if you checked "Keep updated"). Re-run the script — **existing notes are skipped by default**, so your reading notes are safe.
 
-Clicking that link in Obsidian will open the PDF in your default PDF viewer.
+```bash
+# Run again — only new papers get new notes; existing notes untouched
+python3 zotero_to_obsidian.py ~/Documents/my_library.bib ./Bibliography/ --pdf both --email you@lab.edu
+```
 
-> **Tip:** Zotero can export PDFs alongside the `.bib` file. In the export dialog, check **"Export Files"** — PDFs will be placed in a folder next to the `.bib` file. You can then move them into `Bibliography/PDFs/`.
+---
 
+### Linking papers to experiments and projects
 
+From any note in the vault, you can link to a paper:
 
-*Last updated: May 2026*
+```
+- Based on: [[Bibliography/Forsythe 1996 — Activation of vascular endothelial…]]
+- See also: [[Bibliography/Kaelin 2008 — Oxygen sensing by metazoans…]]
+```
+
+In your **Project** note, add a **Key papers** section and list the most relevant ones. Over time, Obsidian's graph view will show you which papers connect to which experiments, protocols, and projects.

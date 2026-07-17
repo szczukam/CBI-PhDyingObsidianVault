@@ -9,6 +9,7 @@ Projects/      one note per research project
 Protocols/     your experimental protocols
 Experiments/   one note per experiment run
 Results/       figures and graphical results
+Bibliography/  one note per article
 _Attachments/  images and files you embed in notes
 _Templates/    templates — do not edit these directly
 ```
@@ -23,6 +24,7 @@ _Templates/    templates — do not edit these directly
 | `Protocol` | Each experimental protocol (one note = one protocol) |
 | `Experiment` | Each time you run an experiment |
 | `Results` | Each set of figures or results to track |
+| `Literature` | Managing bibliography |
 
 ## How to name notes
 
