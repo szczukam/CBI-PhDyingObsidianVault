@@ -58,6 +58,7 @@ Whenever you create a note, fill in the **Project** link, then add a back-link i
 ## Recommended plugins (free, installed from Obsidian settings)
 
 - **Templater** — applies templates automatically when you create a note
+- **Task Genius** - Visual Lists, Kanban tables, Calendar, Progression Bars 
 - **Calendar** — sidebar calendar to navigate daily notes
 - **Tasks** — shows all your `- [ ]` checkboxes across the vault in one view
 

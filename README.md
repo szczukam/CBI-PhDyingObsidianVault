@@ -223,12 +223,15 @@ After installing:
 
 From now on, creating a new note inside a folder will automatically apply the right template.
 
-### Calendar *(recommended)*
-Adds a calendar to the right sidebar. Click any date to open (or create) the daily note for that day.
+### Task Genius *(recommended)*
+Visual Lists, Kanban tables, Calendar, Progression Bars 
 
+### Calendar
+Adds a calendar to the right sidebar. Click any date to open (or create) the daily note for that day.
 No extra configuration needed after enabling.
 
-### Tasks *(recommended)*
+
+### Tasks
 Lets you see all your `- [ ]` checkboxes from across the entire vault in one place.
 
 After installing, you can create a note with this content to see all pending tasks:
