@@ -88,7 +88,7 @@ vault/
 
 ---
 
-## 5. Templates — what they are and how to use them
+## 5. Templates - what they are and how to use them
 
 A template is a pre-filled note with sections already set up for you. Instead of starting from a blank page every time, you just pick the right template and fill in the blanks.
 

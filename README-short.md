@@ -11,14 +11,14 @@ Experiments/   one note per experiment run
 Results/       figures and graphical results
 Bibliography/  one note per article
 _Attachments/  images and files you embed in notes
-_Templates/    templates — do not edit these directly
+_Templates/    templates - do not edit these directly
 ```
 
 ## Templates
 
 | Template | When to use |
 |----------|-------------|
-| `Meeting` | Every meeting — with supervisor, lab, collaborators |
+| `Meeting` | Every meeting - with supervisor, lab, collaborators |
 | `Daily` | Every working day |
 | `Project` | Each new research project |
 | `Protocol` | Each experimental protocol (one note = one protocol) |
@@ -53,7 +53,7 @@ Daily       →  links to Experiments run + Project + Meeting
 
 ## The one habit to build
 
-Whenever you create a note, fill in the **Project** link, then add a back-link in the project note. That's it — everything stays connected.
+Whenever you create a note, fill in the **Project** link, then add a back-link in the project note. That's it - everything stays connected.
 
 ## Recommended plugins (free, installed from Obsidian settings)
 
